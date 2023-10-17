@@ -6,22 +6,20 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class DiceRollerLogic : MonoBehaviour
+public class MenuLogic : MonoBehaviour
 { 
     Button mybutton;
     
     [SerializeField] TextMeshProUGUI mytext;
 
-    public static int pointCount = 0;
 
     float timer = 0;
-
-
+    string[] options = { "DiceRoller", "Upgrades", "Combat"};
+    int optionStart = 0;
 
     void Start()
     {
         mybutton = GetComponent<Button>();
-        mytext.text = "Points: " + pointCount;
     }
     void Update()
     {
@@ -30,22 +28,29 @@ public class DiceRollerLogic : MonoBehaviour
             timer += Time.deltaTime;
             if (timer > 3)
             {
-                SceneManager.LoadScene("Menu");
+                Select();
                 timer =  0;
             }
         }
         if (Input.GetButtonUp("Fire1"))
         {
-            Roll();
+            Next();
             timer = 0;
         }
         
     }
 
-    void Roll()
+    private void Select()
     {
-        int diceRoll = Random.Range(1, 7);
-        pointCount += diceRoll;
-        mytext.text = "Points: " + pointCount;
+        SceneManager.LoadScene(options[optionStart]);
+    }
+
+    void Next()
+    {
+        optionStart++;
+        if(optionStart > 2)
+        {
+            optionStart = 0;
+        }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-public class DiceRollerLogic : MonoBehaviour
+public class CombatLogic : MonoBehaviour
 { 
     Button mybutton;
     
@@ -21,7 +21,6 @@ public class DiceRollerLogic : MonoBehaviour
     void Start()
     {
         mybutton = GetComponent<Button>();
-        mytext.text = "Points: " + pointCount;
     }
     void Update()
     {
